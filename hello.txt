@@ -1,5 +1,3 @@
-<<<<<<< HEAD
 pere tarrida
-=======
 Pau Galopa
->>>>>>> 746131b58f16f149c64ac897cf8fd86b584177e5
+Branch Bogaloooo
