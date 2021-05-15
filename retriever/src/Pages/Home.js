@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import webBackground from '../imgs/BigWebHomeImg.jpg';
-import navbarLogo from '../img/navbarLogo.jpg';
+import navbarLogo from '../imgs/DoggerLogo.png';
 
 const backgroundImg = {
     backgroundImage: "url('https://images.pexels.com/photos/215957/pexels-photo-215957.jpeg?cs=srgb&dl=pexels-musicfactory-lehmannsound-215957.jpg&fm=jpg')",
@@ -58,7 +57,9 @@ const buttonStyle = {
 }
 
 const logoStyle = {
-
+    position: 'absolute',
+    top:'15px',
+    left:'10px',
 }
 
 const linkStyle = {
@@ -83,14 +84,14 @@ const linkStyle = {
     width:'60px',
 
 }
-
+//
 function Home() {
     return(
         <div style={backgroundImg}>
             <div>
                 <nav style={navbar}>
-                    <Link to='/' style={logoStyle}><img src={navbarLogo}/></Link>
-                    <Link to='/login' >Log In</Link>
+                <Link to='/'><img src={navbarLogo} style={logoStyle}/></Link>
+                    <Link to='/login' style={linkStyle}>Log In</Link>
                 </nav>
             </div>
             <div style={mainText}>
