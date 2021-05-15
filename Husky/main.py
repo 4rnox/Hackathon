@@ -6,7 +6,7 @@ import hashlib
 
 app = Flask(__name__)
 
-con = sql.connect("Dogger.db")
+con = sql.connect("Husky/Dogger.db")
 cur = con.cursor()
 
 
