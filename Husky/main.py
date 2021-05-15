@@ -21,3 +21,7 @@ def register_user(userdata):
 }
 
 """
+
+insert into credentials (id,hash,user) values (-1, hash, user);
+
+UPDATE credentials SET id = (SELECT max(id)+1 from credentials) where id = -1
