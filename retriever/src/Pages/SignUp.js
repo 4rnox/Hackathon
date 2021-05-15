@@ -1,7 +1,7 @@
-import React from 'react';
+import { React, useRef, useState} from 'react';
 import { Link } from 'react-router-dom';
 import miniLogo from '../imgs/miniLogo.png'
-//taula2 perretes {fotos, nombre, reza, location, castrado? :point_right: :point_left: , sexo, description, id, trucos}
+//taula2 perretes {fotos, nombre, reza, location, castrado? , sexo, description, id, trucos}
 
 const mainStyle = {
     backgroundImage: "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.pexels.com/photos/215957/pexels-photo-215957.jpeg?cs=srgb&dl=pexels-musicfactory-lehmannsound-215957.jpg&fm=jpg')",
@@ -59,10 +59,56 @@ const textInput = {
 
 
 const buttonStyle= {
+    position: 'relative',
+    top:'40px',
+    left:'30%', 
 
+    fontSize:'16px',
+    fontWeight: 'bold',
+    textTransform: 'uppercase',
+    textDecoration: 'none',
+    color: 'white',
+
+    backgroundImage: "linear-gradient(to right, #FD297B, #FF655B)",
+    padding: '5px',
+
+    width:'200px',
+    height:'auto',
+    textAlign:'center',
+
+    borderRadius: '20px',
 };
 
+const loginStyle = {
+    position: 'relative',
+    top:'40px',
+    left:'17%', 
+}
+
 function SingUp() {
+    const email = useRef();
+    const password = useRef();
+    const name = useRef(); 
+    const race = useRef();
+    const location = useRef();
+    const [castrated, setCastrated] = useState("Unknown");
+    const gender = useRef();
+    const description = useRef();
+    const tricks = useRef();
+    const photo = useRef();
+    const [photos, setPhotos] = useState([]);
+    
+
+    const toDictionary = ()=>{
+        console.log(photos);
+        if(email.current.value === "" || password.current.value === "" || name.current.value === "" || race.current.value === ""
+           || location.current.value  === "" || gender.current.value === ""){
+            console.log("error");
+        } else{ 
+            console.log(photo.current.value);
+        }
+    }   
+
     return(
         <div style={mainStyle}>
             <div style={divStyle}>
@@ -70,50 +116,53 @@ function SingUp() {
                 <h1 style={title}> Create account</h1>
                 <form>
                     <label style={inputLabel}>Email: </label> <br/>
-                    <input style={textInput}/>
+                    <input type='email' style={textInput} ref={email}/>
                     <br/>
 
                     <label style={inputLabel}>Password: </label> <br/>
-                    <input style={textInput}/>
+                    <input type='password' style={textInput} ref={password}/>
                     <br/>
 
                     <label style={inputLabel}>Name: </label><br/>
-                    <input style={textInput}/>
+                    <input style={textInput} ref={name}/>
                     <br/>
 
                     <label style={inputLabel}>Race: </label><br/>
-                    <input style={textInput}/>
+                    <input style={textInput} ref={race}/>
                     <br/>
 
                     <label style={inputLabel}>Location: </label><br/>
-                    <input style={textInput}/>
+                    <input style={textInput} ref={location}/>
                     <br/>
 
                     <label style={inputLabel}>Castrated: </label><br/>
                     <label>Yes</label>
-                    <input type='radio' name='castrated' value='1'/>
+                    <input type='radio' value='1' name='castrated' onClick={() => { setCastrated("Yes")}}/>
                     <label>No</label>
-                    <input type='radio' name='castrated' value='0'/>
+                    <input type='radio' value='0'  name='castrated' onClick={() => { setCastrated("No")}}/>
                     <br/>
 
                     <label style={inputLabel}>Gender: </label><br/>
-                    <select>
+                    <select ref={email} ref={gender}>
                         <option>Male</option>
                         <option>Female</option>
                     </select>
                     <br/>
 
                     <label style={inputLabel}>Description: </label><br/>
-                    <input style={textInput}/>
+                    <input style={textInput} ref={description}/>
                     <br/>
 
                     <label style={inputLabel}>Tricks: </label><br/>
-                    <input style={textInput}/>
+                    <input style={textInput} ref={tricks}/>
                     <br/>
 
                     <label style={inputLabel}>Photos: </label><br/>
-                    <input style={textInput}/>
-                    <button type='submit' onClick={()=>{}} style={buttonStyle}/>
+                    <input type="file" id="file" name="file" multiple ref={photo} onChange={() =>{setPhotos([...photos, photo.current.value])}}/>
+                    <br/>
+
+                    <Link to='/main-page' onClick={toDictionary} style={buttonStyle}>Create Profile</Link>
+                    <p style={loginStyle}>Already have an account. <Link to='/login'>Log In</Link></p>
                 </form>
             </div>  
         </div> 

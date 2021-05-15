@@ -14,7 +14,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "start-back" : "../.venv/Scripts/flask run",
+    "start-back" : "cd .. && .venv/Scripts/flask run",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

@@ -82,7 +82,6 @@ const linkStyle = {
 
     height:'20px',
     width:'60px',
-
 }
 //
 function Home() {
