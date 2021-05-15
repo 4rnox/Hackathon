@@ -7,12 +7,13 @@ import hashlib
 
 app = Flask(__name__)
 
-con = sql.connect("Husky/Dogger.db")
-cur = con.cursor()
 
-
-@app.route('/register/<userdata>')
+@app.route('/register/<userdata>', methods=['POST'])
 def register_user(userdata):
+
+    con = sql.connect("Husky/Dogger.db")
+    cur = con.cursor()
+
     userdata = json.loads(userdata)
     user = userdata["userEmail"]
     hash = hashlib.sha256(userdata["userPassword"].encode('utf8')).hexdigest()
