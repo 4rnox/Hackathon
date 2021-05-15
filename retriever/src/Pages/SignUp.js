@@ -23,16 +23,20 @@ function SingUp() {
                     <label>Location: </label>
                     <input/>
 
-                    <label>: </label>
+                    <label>Castrated: </label>
                     <input/>
 
-                    <label>Name: </label>
+                    <label>Gender: </label>
                     <input/>
 
-                    <label>Race: </label>
+                    <label>Description: </label>
+                    <input/>
+
+                    <label>Tricks: </label>
                     <input/>
                     
-                    
+                    <label>Photos: </label>
+                    <input/>
                 </form>
             </div>  
         </div> 
