@@ -1,5 +1,6 @@
 import hashlib
 import sqlite3 as sql
+import json
 
 from flask import Flask
 import hashlib
@@ -12,8 +13,9 @@ cur = con.cursor()
 
 @app.route('/register/<userdata>')
 def register_user(userdata):
-    user = userdata["user"]
-    hash = hashlib.sha256(userdata["password"].encode('utf8')).hexdigest()
+    userdata = json.loads(userdata)
+    user = userdata["userEmail"]
+    hash = hashlib.sha256(userdata["userPassword"].encode('utf8')).hexdigest()
 
     cur.execute("SELECT COUNT(*) FROM credentials WHERE user = ?", (user))
 
