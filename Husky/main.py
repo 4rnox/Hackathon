@@ -22,6 +22,7 @@ def register_user(userdata):
         return False
     else:
         cur.execute("INSERT INTO credentials (id, user, hash) VALUES (-1, ?, ?)", (user, hash))
+        cur.execute("UPDATE credentials SET id = (SELECT max(id)+1 from credentials) where id = -1")
         return True
 
 
