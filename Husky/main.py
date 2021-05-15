@@ -1,29 +1,35 @@
 import hashlib
-import time
+import sqlite3 as sql
+
 from flask import Flask
 import hashlib
 
 app = Flask(__name__)
 
-import sqlite3
-con = sqlite3.connect('Dogger.db')
-
+con = sql.connect("Dogger.db")
 cur = con.cursor()
 
-cur.execute('''DROP table credentials''')
-cur.execute('''CREATE TABLE credentials
-               (id integer not null primary key, user text, password text)''')
-
-cur.execute('''CREATE TABLE Perretes
-        (id integer not null primary key, foto text, nombre text, raza text, location text, genero text, description text, foreign key (id) references credentials (id) on delete cascade)''')
 
 @app.route('/register/<userdata>')
 def register_user(userdata):
+    user = userdata["user"]
+    hash = hashlib.sha256(userdata["password"].encode('utf8')).hexdigest()
 
-    hashlib.sha512(userdata["password"]).hexdigest()
-    # Hash de usuari i contra
-    # SQLquery -- return 1 for succes, -1 for error
-    # 
+    cur.execute("SELECT COUNT(*) FROM credentials WHERE user = ?", (user))
+
+    if (cur.fetchall()[0] >= 1):
+        print("Existing username...")
+        return False
+    else:
+        cur.execute("INSERT INTO credentials (id, user, hash) VALUES (-1, ?, ?)", (user, hash))
+        return True
+
+
+@app.route('/login/<userdata>')
+def login(userdata):    
+    return
+
+
 
 """
 {
@@ -32,7 +38,3 @@ def register_user(userdata):
 }
 
 """
-
-insert into credentials (id,hash,user) values (-1, hash, user);
-UPDATE credentials SET id = (SELECT max(id)+1 from credentials) where id = -1;
-
