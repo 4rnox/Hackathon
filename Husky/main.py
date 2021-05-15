@@ -10,7 +10,8 @@ app = Flask(__name__)
 def register_user(userdata):
     user = userdata["user"]
     hash = hashlib.sha256(userdata["password"].encode('utf8')).hexdigest()
-    
+
+@app.route('/login/<userdata>')
 
 
 """
