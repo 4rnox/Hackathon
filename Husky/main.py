@@ -8,11 +8,10 @@ app = Flask(__name__)
 
 @app.route('/register/<userdata>')
 def register_user(userdata):
+    user = userdata["user"]
+    hash = hashlib.sha256(userdata["password"].encode('utf8')).hexdigest()
+    
 
-    hashlib.sha512(userdata["password"]).hexdigest()
-    # Hash de usuari i contra
-    # SQLquery -- return 1 for succes, -1 for error
-    # 
 
 """
 {
